@@ -1,0 +1,16 @@
+{
+  "name": "david_ptrenko_hm1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "moment.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "getdate.js"
+    
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "moment": "^2.30.1"
+  }
+}
