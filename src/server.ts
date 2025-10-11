@@ -1,14 +1,15 @@
-const express = require('express')
-const postRouter = require('./server_layers/server_router')
+import express from 'express'
+import {postRouter} from './server_layers/server_router'
 
 const app = express()
 
+const app: express.Express = express()
 
 app.use(express.json())
 app.use(postRouter)
 
-const PORT = 2232
-const HOST = 'localhost'
+const PORT: number = 2232
+const HOST: string = 'localhost'
 
 app.get("/", (req, res) =>{
     res.status(200).json("hello")

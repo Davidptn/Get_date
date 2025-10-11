@@ -1,12 +1,12 @@
-const path = require("path")
-const fs = require("fs")
-const fsPromises = require("fs/promises")
+import path from 'path'
+import fs from 'fs'
+import fsPromises from 'fs/promises'
 
 const productsPath = path.join(__dirname, "products.json")
 const products = JSON.parse(fs.readFileSync(productsPath, "utf-8"))
 
 
-const postService = {
+export const postService = {
     getAll() {
         return Promise.resolve(posts);
     },
@@ -27,4 +27,4 @@ const postService = {
     },
 };
 
-module.exports = postService
+//module.exports = postService

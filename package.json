@@ -4,13 +4,25 @@
   "description": "",
   "main": "moment.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "getdate.js"
+    "start": "ts-node ./src/server.ts",
+    "test": "ts-node ./typescript.ts"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^5.1.0",
-    "moment": "^2.30.1"
-  }
+    "moment": "^2.30.1",
+    "ts-node": "^10.9.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Davidptn/Get_date.git"
+  },
+  "keywords": [
+    "1"
+  ],
+  "bugs": {
+    "url": "https://github.com/Davidptn/Get_date/issues"
+  },
+  "homepage": "https://github.com/Davidptn/Get_date#readme"
 }

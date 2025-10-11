@@ -1,16 +1,18 @@
 import postService from "./post.service.js";
+import { Request, Response } from "express"
 
-const postController = {
-    async getAllPosts(req, res) {
-    try {
-        const posts = await postService.getAll();
-        res.json(posts);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-        }
+
+export const postController = {
+    getAllPosts:(req: Request,res: Response) {
+        try {
+            const posts = await postService.getAll();
+            res.json(posts);
+        } catch (error) {
+            res.status(500).json({ message: error.message });
+            }
     },
 
-    async getPostById(req, res) {
+    getById:(req: Request, res: Response)=>{
         try {
         const post = await postService.getById(req.params.id);
         if (!post) return res.status(404).json({ message: "Пост не найден" });
@@ -20,7 +22,7 @@ const postController = {
         }
     },
 
-    async createPost(req, res) {
+    create: async (req: Request, res: Response) => {
         try {
         const newPost = await postService.create(req.body);
         res.status(201).json(newPost);
@@ -30,4 +32,4 @@ const postController = {
     }
 };
 
-module.exports = postController;
+//module.exports = postController;
