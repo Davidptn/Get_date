@@ -1,30 +1,52 @@
-import path from 'path'
-import fs from 'fs'
-import fsPromises from 'fs/promises'
+import path from "path";
+import fs from "fs";
+import fsPromises from "fs/promises";
 
-const productsPath = path.join(__dirname, "products.json")
-const products = JSON.parse(fs.readFileSync(productsPath, "utf-8"))
+const postsPath = path.join(__dirname, "posts.json");
 
+let posts: any[] = [];
+if (fs.existsSync(postsPath)) {
+    const data = fs.readFileSync(postsPath, "utf-8");
+    posts = JSON.parse(data);
+    }
 
 export const postService = {
-    getAll() {
-        return Promise.resolve(posts);
+    async getAll() {
+        return posts;
     },
 
-    getById(id) {
+    async getById(id: string | number) {
         const post = posts.find((p) => p.id === Number(id));
-        return Promise.resolve(post);
+        return post;
     },
-
-    create(data) {
+    
+    async create(data: { title: string; content: string }) {
         const newPost = {
         id: Date.now(),
         title: data.title,
         content: data.content,
         };
+
     posts.push(newPost);
-    return Promise.resolve(newPost);
+
+    await fsPromises.writeFile(postsPath, JSON.stringify(posts, null, 2), "utf-8");
+
+    return newPost;
     },
+
+    async update(id: string | number, data: { title?: string; content?: string }) {
+        const postIndex = posts.findIndex((p) => p.id === Number(id));
+        if (postIndex === -1) {
+            return null;
+        }
+        
+        posts[postIndex] = { ...posts[postIndex], ...data };
+
+        await fsPromises.writeFile(postsPath, JSON.stringify(posts, null, 2), "utf-8");
+
+        return posts[postIndex];
+    }
+
 };
 
-//module.exports = postService
+export {postService};

@@ -1,12 +1,14 @@
-import express from 'express'
-import { postController } from './server_controller'
+import express, { Router } from "express";
+import { postController } from "./server_controller.js";
 
-const postRouter = express.Router()
+const postRouter: Router = express.Router();
 
-postRouter.get("/posts/", postController.getAllPosts)
+postRouter.get("/posts", postController.getAllPosts);
 
-postRouter.get("/posts/:id", postController.getById)
+postRouter.get("/posts/:id", postController.getById);
 
-postRouter.post("/post", postController.create)
+postRouter.post("/posts", postController.create);
 
-export { postRouter }
+postRouter.put("/posts/:id", postController.update);
+
+export { postRouter };
